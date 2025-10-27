@@ -6,8 +6,9 @@ require "app/systems/hoverable_system"
 require "app/systems/handle_click_system"
 require "app/systems/timer_system"
 require "app/systems/wallet_system"
+require "app/systems/graph_system"
 
-STOCKS = ["MEME", "DRRB", "GODS", "HAPP"]
+STOCKS = ["MEME", ]#"DRRB", "GODS", "HAPP"]
 VOLATILITIES = ["steady", "rollercoaster", "pump_dump", "late_bloomer", "fake_out"]
     
 SYSTEMS = [
@@ -17,7 +18,8 @@ SYSTEMS = [
     HoverableSystem.new,
     HandleClickSystem.new,
     TimerSystem.new,
-    WalletSystem.new
+    WalletSystem.new,
+    GraphSystem.new
 ]
 
 def tick(args)
@@ -70,7 +72,7 @@ def spawn_game_entities(args)
         }
     })
 
-    STOCKS.each do 
+    STOCKS.each_with_index do 
         args.state.entities.spawn({
             stock: {
                 symbol: _1,
@@ -84,7 +86,7 @@ def spawn_game_entities(args)
                 max_history: 100,
                 update_frequency: 20
             },
-            rect: args.layout.rect(row: 1, col: 1, w: 10, h: 3),
+            rect: args.layout.rect(row: 1 + ((_2 % 3) * 3), col: 1 + (_2 / 3).floor * 10, w: 10, h: 3),
             graph: true
         })
     end

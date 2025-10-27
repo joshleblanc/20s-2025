@@ -2,6 +2,11 @@ class StockPriceUpdateSystem
     def call(args)
         args.state.entities.each_entity(:stock, :price_history) do |entity_id, stock, price_history|
             new_price = calculate_price(stock.volatility_type, args.state.tick_count, stock.seed, stock.base_price)
+            price_history.history.push(new_price)
+            if price_history.history.length > price_history.max_history
+                price_history.history.shift
+            end
+            stock.current_price = new_price
         end
     end
 
