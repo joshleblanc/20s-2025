@@ -69,7 +69,7 @@ class GraphSystem
                 
                 # Current price label
                 args.outputs.labels << {
-                    x: rect.x + rect.w + 5,
+                    x: rect.x + rect.w - 40,
                     y: rect.y + rect.h / 2,
                     text: stock.current_price&.round(2).to_s,
                     size_px: 12,

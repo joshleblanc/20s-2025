@@ -86,7 +86,7 @@ def spawn_game_entities(args)
                 max_history: 1000,
                 update_frequency: 60
             },
-            rect: args.layout.rect(row: 1 + ((_2 % 3) * 3), col: 1 + (_2 / 3).floor * 10, w: 10, h: 3),
+            rect: args.layout.rect(row: 1 + ((_2 % 3) * 4), col: 1 + (_2 / 3).floor * 11, w: 10, h: 3),
             graph: true
         })
     end
