@@ -17,7 +17,22 @@ class GraphSystem
                 end
                 
                 h = percentage * rect.h
-                args.outputs.solids << { x: (rect.x + index * width) + 1, y: rect.y, w: width - 2, h: h }
+                
+                if index == 0
+                    color = { r: 128, g: 128, b: 128 } 
+                elsif price >= price_history.history[index - 1]
+                    color = { r: 105, g: 210, b: 105 }
+                else
+                    color = { r: 255, g: 0, b: 0 } 
+                end
+                
+                args.outputs.solids << { 
+                    x: (rect.x + index * width) + 1, 
+                    y: rect.y, 
+                    w: width - 2, 
+                    h: h, 
+                    r: color[:r], g: color[:g], b: color[:b]
+                }
             end
             
             # Draw labels if we have price history
@@ -26,7 +41,7 @@ class GraphSystem
                 args.outputs.labels << {
                     x: rect.x + rect.w / 2,
                     y: rect.y + rect.h + 15,
-                    text: stock.symbol,
+                    text: "#{stock.symbol} (#{stock.volatility_type})",
                     size_px: 14,
                     anchor_x: 0.5,
                     anchor_y: 0.5
