@@ -68,6 +68,7 @@ def spawn_game_entities(args)
             tick_count_at_start: args.state.tick_count,
             duration: 20,
             current_seconds: 0,
+            ticks_past: 0,
             ticks_per_second: 60 # this is stupid, I want delta time
         }
     })

@@ -3,6 +3,7 @@ class TimerSystem
         args.state.entities.each_entity(:timer) do |entity_id, timer|
             ticks_past = args.state.tick_count - timer.tick_count_at_start
             timer.current_seconds = (ticks_past / timer.ticks_per_second).floor
+            timer.ticks_past = ticks_past
             
             if timer.current_seconds < 0 
                 args.state.entities.destroy(entity_id)
