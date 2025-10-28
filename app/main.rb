@@ -8,7 +8,7 @@ require "app/systems/timer_system"
 require "app/systems/wallet_system"
 require "app/systems/graph_system"
 
-STOCKS = ["MEME", ]#"DRRB", "GODS", "HAPP"]
+STOCKS = ["MEME", "DRRB", "GODS", "HAPP"]
 VOLATILITIES = ["steady", "rollercoaster", "pump_dump", "late_bloomer", "fake_out"]
     
 SYSTEMS = [
@@ -83,8 +83,8 @@ def spawn_game_entities(args)
             },
             price_history: {
                 history: [],
-                max_history: 100,
-                update_frequency: 20
+                max_history: 1000,
+                update_frequency: 60
             },
             rect: args.layout.rect(row: 1 + ((_2 % 3) * 3), col: 1 + (_2 / 3).floor * 10, w: 10, h: 3),
             graph: true

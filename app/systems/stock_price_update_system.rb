@@ -1,7 +1,7 @@
 class StockPriceUpdateSystem 
     def call(args)
         args.state.entities.each_entity(:stock, :price_history) do |entity_id, stock, price_history|
-            if args.state.tick_count % price_history.update_frequency == 0
+            if true #args.state.tick_count % price_history.update_frequency == 0
                 new_price = calculate_price(stock.volatility_type, args.state.tick_count / price_history.update_frequency, stock.seed, stock.base_price)
                 price_history.history.push(new_price)
                 if price_history.history.length > price_history.max_history

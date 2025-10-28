@@ -27,9 +27,9 @@ class GraphSystem
                 end
                 
                 args.outputs.solids << { 
-                    x: (rect.x + index * width) + 1, 
+                    x: (rect.x + index * width), 
                     y: rect.y, 
-                    w: width - 2, 
+                    w: width, 
                     h: h, 
                     r: color[:r], g: color[:g], b: color[:b]
                 }
@@ -37,10 +37,10 @@ class GraphSystem
             
             # Draw labels if we have price history
             if price_history.history.length > 0
-                # Stock symbol at top
+                # Stock symbol inside chart
                 args.outputs.labels << {
                     x: rect.x + rect.w / 2,
-                    y: rect.y + rect.h + 15,
+                    y: rect.y + rect.h - 15,
                     text: "#{stock.symbol} (#{stock.volatility_type})",
                     size_px: 14,
                     anchor_x: 0.5,
