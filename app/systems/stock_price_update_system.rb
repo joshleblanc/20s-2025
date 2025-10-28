@@ -13,7 +13,7 @@ class StockPriceUpdateSystem
     end
 
     def calculate_price(type, time, seed, base)
-        case type
+        price = case type
         when "steady"
             base + noise(seed, time) * 10 + Math.sin(time * 0.5 + seed) * 5
         when "rollercoaster"
@@ -37,6 +37,8 @@ class StockPriceUpdateSystem
                 base - (time - 15) * 1.5 + Math.sin(time * 1.2 + seed) * 12
             end
         end
+        
+        [price, 1.0].max
     end
 
     def noise(seed, time)
